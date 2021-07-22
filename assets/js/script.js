@@ -1,4 +1,15 @@
-let tasks =[]
+const Storage = {
+  saveData() {
+    localStorage.setItem('todo-item', JSON.stringify(tasks))
+  },
+  getData() {
+    return  JSON.parse(localStorage.getItem('todo-item')) || []
+  }
+
+}
+
+let tasks = Storage.getData()
+
 
 function createId() {
   let timestamp = new Date()
@@ -23,7 +34,8 @@ function createTask() {
     }
   
     tasks.push(task)
-  
+    
+    Storage.saveData()
     updateScreen()
   }
 }
@@ -53,10 +65,20 @@ function deleteTask(element) {
 }
 
 function taskDone(element) {
-  tasks = tasks.filter(task => {
-    task.id == element.getAttribute('id-data')
-    task.data.isDone = true
-    updateScreen();
-  })
+  const actualTask = tasks.find(task => task.id ==   element.getAttribute('id-data'))
+  const actualIndex = tasks.findIndex(task => task.id == element.getAttribute('id-data'))
+  if (actualTask.data.isDone == false){
+    actualTask.data.isDone = true
+    tasks[actualIndex] = actualTask
+    updateScreen()
+  }else {
+    actualTask.data.isDone = false
+    tasks[actualIndex] = actualTask
+    updateScreen()
+  }
 }
+
+
+
+
 
