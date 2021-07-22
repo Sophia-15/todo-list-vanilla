@@ -24,7 +24,7 @@ function createId() {
 
 function createTask() {
   let newTask = document.querySelector('input').value
-  if (newTask != '') {
+  if (!newTask.match(/^(\s)+$/) && newTask != '') {
     let task = {
       id: createId(),
       data: {
