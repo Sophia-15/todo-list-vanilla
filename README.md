@@ -4,7 +4,7 @@
 </p>
 
 ## Sobre   
-Uma to-do list feita com vanilla JS, com armazenamento no local storage. Clique [**aqui**]() para testar!
+Uma to-do list feita com vanilla JS, com armazenamento no local storage. Clique [**aqui**](https://sophia-15.github.io/todo-list-vanilla/) para testar!
 
 ---
 
