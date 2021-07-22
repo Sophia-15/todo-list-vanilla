@@ -9,7 +9,7 @@ const Storage = {
 }
 
 let tasks = Storage.getData()
-
+updateScreen()
 
 function createId() {
   let timestamp = new Date()
@@ -40,14 +40,19 @@ function createTask() {
   }
 }
 
-
 function updateScreen() {
   let list = '<ul>'
 
   tasks.forEach(task => {
-    list += `<li id-data=${task.id} isDone=${task.data.isDone} >${task.data.description}</li>`
-    list += `<button onclick="deleteTask(this)" id-data=${task.id} class="remove">Excluir</button>`
-    list += `<button onclick="taskDone(this)" id-data=${task.id}>Done</button>`
+    list += `
+    <li id-data=${task.id} isDone=${task.data.isDone}>
+    
+    ${task.data.description}
+    <div class="list-options">
+      <img src="assets/img/check.svg" alt="Mark as done" onclick="taskDoneAndUndone(this)" id-data=${task.id}>
+      <img src="assets/img/trash.svg" alt="Delete" onclick="deleteTask(this)" id-data=${task.id}>
+    </div>
+    </li>`
   })
 
   list += '</ul>'
@@ -61,22 +66,32 @@ function deleteTask(element) {
 
   tasks = tasks.filter(task => task.id != element.getAttribute('id-data'))
 
+  const actualIndex = tasks.findIndex(task => task.id == element.getAttribute('id-data'))
+  const existInLocalStorage = actualIndex != -1
+  if(existInLocalStorage){
+    tasks.splice(actualIndex, 1)
+  }
+  
+  Storage.saveData()
   updateScreen();
 }
 
-function taskDone(element) {
+function taskDoneAndUndone(element) {
   const actualTask = tasks.find(task => task.id ==   element.getAttribute('id-data'))
   const actualIndex = tasks.findIndex(task => task.id == element.getAttribute('id-data'))
   if (actualTask.data.isDone == false){
     actualTask.data.isDone = true
     tasks[actualIndex] = actualTask
+    Storage.saveData()
     updateScreen()
   }else {
     actualTask.data.isDone = false
     tasks[actualIndex] = actualTask
+    Storage.saveData()
     updateScreen()
   }
 }
+
 
 
 

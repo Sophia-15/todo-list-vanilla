@@ -1,11 +1,172 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap");
 * {
   padding: 0;
   margin: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  font-family: 'Fira Code', serif;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background: #050517;
+}
+
+.name h1 {
+  text-align: center;
+  color: #FFFCEE;
+  font-weight: 500;
+  font-size: 4.8rem;
+  padding-top: 4rem;
+}
+
+.insert-task {
+  margin: 5rem 0 7rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.insert-task input {
+  padding: 2rem 15rem 2rem 2rem;
+  background: rgba(255, 252, 238, 0.24);
+  border: 2px solid #FFFCEE;
+  border-radius: 2rem;
+  color: #fff;
+}
+
+.insert-task input::-webkit-input-placeholder {
+  color: rgba(255, 252, 238, 0.8);
+}
+
+.insert-task input:-ms-input-placeholder {
+  color: rgba(255, 252, 238, 0.8);
+}
+
+.insert-task input::-ms-input-placeholder {
+  color: rgba(255, 252, 238, 0.8);
+}
+
+.insert-task input::placeholder {
+  color: rgba(255, 252, 238, 0.8);
+}
+
+.insert-task button {
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  background: #f5cb5c;
+  border: 1px solid #fff;
+  font-size: 3.5rem;
+  color: #fff;
+  margin-left: 3.3rem;
+  cursor: pointer;
+}
+
+.insert-task button:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transition: 0.2s ease-in;
+  transition: 0.2s ease-in;
+}
+
+ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 2rem;
+}
+
+li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background: #3F3047;
+  width: 85%;
+  padding: 3rem;
+  list-style-type: none;
+  border: 2px solid #FFFCEE;
+  border-radius: 2rem;
+  color: #fff;
+  font-size: 1.8rem;
+  word-break: break-word;
+}
+
+li .list-options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+li .list-options img {
+  cursor: pointer;
+  padding-left: 2rem;
+}
+
+li .list-options img:hover {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  -webkit-transition: 0.2s ease-in;
+  transition: 0.2s ease-in;
 }
 
 li[isDone=true] {
   text-decoration: line-through;
+  text-decoration-thickness: 0.5rem;
+  -webkit-text-decoration-color: #000000;
+          text-decoration-color: #000000;
+}
+
+/*MEDIA QUERIES*/
+@media (max-width: 516px) {
+  html {
+    font-size: 55%;
+  }
+  .insert-task input {
+    padding: 2rem 6rem 2rem 2rem;
+  }
+}
+
+@media (max-width: 406px) {
+  .insert-task input {
+    padding: 2rem 4rem 2rem 2rem;
+  }
+}
+
+@media (max-width: 354px) {
+  html {
+    font-size: 50%;
+  }
+  .insert-task input {
+    padding: 2rem;
+  }
 }
 /*# sourceMappingURL=style.css.map */
