@@ -15,6 +15,16 @@ body {
   background: #050517;
 }
 
+@keyframes slide {
+  from {
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0rem);
+    opacity: 1;  
+  }
+}
+
 .name h1{
   text-align: center;
   color: #FFFCEE;
@@ -64,6 +74,11 @@ body {
   }
 }
 
+.animation-list {
+  animation: slide 2s forwards;
+  transform: translateX(-50rem);
+}
+
 
 ul {
   display: flex;
@@ -77,6 +92,7 @@ li {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
 
   background: #3F3047;
   width: 85%;
@@ -110,7 +126,7 @@ li {
 
 li[isDone=true] {
   text-decoration: line-through;
-  text-decoration-thickness: 0.5rem;
+  text-decoration-thickness: 0.3rem;
   text-decoration-color: #000000;
 }
 

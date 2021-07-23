@@ -9,7 +9,7 @@ const Storage = {
 }
 
 let tasks = Storage.getData()
-updateScreen()
+
 
 function createId() {
   let timestamp = new Date()
@@ -34,32 +34,51 @@ function createTask() {
     }
   
     tasks.push(task)
-    
+    addTask(task)
     Storage.saveData()
-    updateScreen()
+  } else {
+    alert('This field cannot be blank!')
   }
 }
 
-function updateScreen() {
-  let list = '<ul>'
+function render() {
+  let list
 
   tasks.forEach(task => {
     list += `
-    <li id-data=${task.id} isDone=${task.data.isDone}>
+    <li id-data=${task.id} isDone=${task.data.isDone} class="animation-list">
     
     ${task.data.description}
     <div class="list-options">
-      <img src="assets/img/check.svg" alt="Mark as done" onclick="taskDoneAndUndone(this)" id-data=${task.id}>
+      <img src="assets/img/check.svg" alt="Mark as done" onclick="taskDoneAndUndone(this)" class="checkmark" id-data=${task.id}> 
+
       <img src="assets/img/trash.svg" alt="Delete" onclick="deleteTask(this)" id-data=${task.id}>
     </div>
     </li>`
   })
 
-  list += '</ul>'
-
   document.querySelector('.todo-list').innerHTML = list
   document.querySelector('input').value = ''
 }
+
+function addTask(task) {
+  let list
+    
+  list = `
+  <li id-data=${task.id} isDone=${task.data.isDone} class="animation-list">
+  
+  ${task.data.description}
+  <div class="list-options">
+    <img src="assets/img/check.svg" alt="Mark as done" onclick="taskDoneAndUndone(this)" class="checkmark" id-data=${task.id}> 
+
+    <img src="assets/img/trash.svg" alt="Delete" onclick="deleteTask(this)" id-data=${task.id}>
+  </div>
+  </li>`
+
+document.querySelector('.todo-list').innerHTML += list
+document.querySelector('input').value = ''
+}
+
 
 function deleteTask(element) {
   console.log(element)
@@ -73,7 +92,7 @@ function deleteTask(element) {
   }
   
   Storage.saveData()
-  updateScreen();
+  render();
 }
 
 function taskDoneAndUndone(element) {
@@ -83,16 +102,16 @@ function taskDoneAndUndone(element) {
     actualTask.data.isDone = true
     tasks[actualIndex] = actualTask
     Storage.saveData()
-    updateScreen()
+    render()
   }else {
     actualTask.data.isDone = false
     tasks[actualIndex] = actualTask
     Storage.saveData()
-    updateScreen()
+    render()
   }
 }
 
-
+window.onload = render()
 
 
 

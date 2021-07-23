@@ -15,6 +15,28 @@ body {
   background: #050517;
 }
 
+@-webkit-keyframes slide {
+  from {
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateX(0rem);
+            transform: translateX(0rem);
+    opacity: 1;
+  }
+}
+
+@keyframes slide {
+  from {
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateX(0rem);
+            transform: translateX(0rem);
+    opacity: 1;
+  }
+}
+
 .name h1 {
   text-align: center;
   color: #FFFCEE;
@@ -79,6 +101,13 @@ body {
   transition: 0.2s ease-in;
 }
 
+.animation-list {
+  -webkit-animation: slide 2s forwards;
+          animation: slide 2s forwards;
+  -webkit-transform: translateX(-50rem);
+          transform: translateX(-50rem);
+}
+
 ul {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -140,7 +169,7 @@ li .list-options img:hover {
 
 li[isDone=true] {
   text-decoration: line-through;
-  text-decoration-thickness: 0.5rem;
+  text-decoration-thickness: 0.3rem;
   -webkit-text-decoration-color: #000000;
           text-decoration-color: #000000;
 }
