@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 *{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Fira Code', serif;
+  font-family: 'Press Start 2P', cursive;
 }
 
 html {
@@ -29,7 +29,7 @@ body {
   text-align: center;
   color: #FFFCEE;
   font-weight: 500;
-  font-size: 4.8rem;
+  font-size: 3.2rem;
   padding-top: 4rem;
 }
 
@@ -43,24 +43,35 @@ body {
     padding: 2rem 15rem 2rem 2rem;
 
     background: rgba(255, 252, 238, 0.24);
-    border: 2px solid #FFFCEE;
-    border-radius: 2rem;
     color: #fff;
+
+    box-shadow: 0 -4px 0 #FFFCEE,
+    4px 0 0 #FFFCEE,
+    0 4px 0 #FFFCEE,
+    -4px 0 0 #FFFCEE;
+    border: none;
 
     &::placeholder {
       color: rgba(255, 252, 238, 0.8);
     }
+
+    &:focus {
+      outline: none;
+    }
   }
 
   button {
-    height: 5rem;
-    width: 5rem;
+    height: 4.5rem;
+    width: 4.5rem;
 
-    border-radius: 50%;
     background: #f5cb5c;
-    border: 1px solid #fff;
+    border: none;
+    box-shadow: 0 -4px 0 #FFFCEE,
+    4px 0 0 #FFFCEE,
+    0 4px 0 #FFFCEE,
+    -4px 0 0 #FFFCEE;
 
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     color: #fff;
 
     margin-left: 3.3rem;
@@ -85,7 +96,6 @@ ul {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 2rem;
 }
 
 li {
@@ -93,17 +103,20 @@ li {
   align-items: center;
   justify-content: space-between;
 
-
   background: #3F3047;
   width: 85%;
   padding: 3rem;
+  margin-bottom: 3rem;
   list-style-type: none;
 
-  border: 2px solid #FFFCEE;
-  border-radius: 2rem;
+  border: none;
+  box-shadow: 0 -4px 0 #FFFCEE,
+    4px 0 0 #FFFCEE,
+    0 4px 0 #FFFCEE,
+    -4px 0 0 #FFFCEE;
 
   color: #fff;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
 
   word-break: break-word;
 
@@ -115,6 +128,7 @@ li {
     img {
       cursor: pointer;
       padding-left: 2rem;
+      height: 3.5rem;
 
       &:hover {
         transform: scale(1.2);
@@ -128,11 +142,12 @@ li[isDone=true] {
   text-decoration: line-through;
   text-decoration-thickness: 0.3rem;
   text-decoration-color: #000000;
+  
 }
 
 /*MEDIA QUERIES*/
 
-@media (max-width:516px) {
+@media (max-width:556px) {
   html {
     font-size: 55%;
   }
@@ -141,16 +156,21 @@ li[isDone=true] {
 
     input {
       padding: 2rem 6rem 2rem 2rem;
+
+     
     }
   }
 
 }
 
-@media (max-width:406px) {
+@media (max-width:436px) {
+  
   .insert-task {
 
     input {
-      padding: 2rem 4rem 2rem 2rem;
+      padding: 2rem ;
+
+      font-size: 1.2rem;
     }
   }
 

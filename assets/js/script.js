@@ -42,7 +42,7 @@ function createTask() {
 }
 
 function render() {
-  let list
+  let list = '<ul>'
 
   tasks.forEach(task => {
     list += `
@@ -50,38 +50,45 @@ function render() {
     
     ${task.data.description}
     <div class="list-options">
-      <img src="assets/img/check.svg" alt="Mark as done" onclick="taskDoneAndUndone(this)" class="checkmark" id-data=${task.id}> 
+      <img src="assets/img/undone.svg" alt="Mark as done" onclick="taskDoneAndUndone(this)" class="checkmark" id-data=${task.id}> 
 
       <img src="assets/img/trash.svg" alt="Delete" onclick="deleteTask(this)" id-data=${task.id}>
     </div>
     </li>`
   })
 
+  list += '</ul>'
+
   document.querySelector('.todo-list').innerHTML = list
   document.querySelector('input').value = ''
 }
 
 function addTask(task) {
-  let list
+  let list = '<ul>'
     
-  list = `
+  list += `
   <li id-data=${task.id} isDone=${task.data.isDone} class="animation-list">
   
   ${task.data.description}
   <div class="list-options">
-    <img src="assets/img/check.svg" alt="Mark as done" onclick="taskDoneAndUndone(this)" class="checkmark" id-data=${task.id}> 
+    <img src="assets/img/undone.svg" alt="Mark as done" onclick="taskDoneAndUndone(this)" class="checkmark" id-data=${task.id}> 
 
     <img src="assets/img/trash.svg" alt="Delete" onclick="deleteTask(this)" id-data=${task.id}>
   </div>
   </li>`
 
-document.querySelector('.todo-list').innerHTML += list
+  list += '</ul>'
+
+  const node = new DOMParser().parseFromString(list, 'text/html').body.firstElementChild
+
+document.querySelector('.todo-list').appendChild(node)
 document.querySelector('input').value = ''
 }
 
 
 function deleteTask(element) {
   console.log(element)
+  const target = document.querySelector(`li[id-data="${element.getAttribute('id-data')}"]`)
 
   tasks = tasks.filter(task => task.id != element.getAttribute('id-data'))
 
@@ -90,24 +97,31 @@ function deleteTask(element) {
   if(existInLocalStorage){
     tasks.splice(actualIndex, 1)
   }
-  
+
+
   Storage.saveData()
-  render();
+  target.remove()
 }
 
 function taskDoneAndUndone(element) {
+  const target = document.querySelector(`li[id-data="${element.getAttribute('id-data')}"]`)
+  console.log(target)
+  let imgCheck = document.querySelector('.checkmark')
+
   const actualTask = tasks.find(task => task.id ==   element.getAttribute('id-data'))
   const actualIndex = tasks.findIndex(task => task.id == element.getAttribute('id-data'))
   if (actualTask.data.isDone == false){
-    actualTask.data.isDone = true
+    actualTask.data.isDone = true    
     tasks[actualIndex] = actualTask
     Storage.saveData()
-    render()
+    target.setAttribute('isdone', 'true')
+    imgCheck.src = 'assets/img/check.svg'
   }else {
     actualTask.data.isDone = false
     tasks[actualIndex] = actualTask
     Storage.saveData()
-    render()
+    target.setAttribute('isdone', 'false')
+    imgCheck.src = 'assets/img/undone.svg'
   }
 }
 
