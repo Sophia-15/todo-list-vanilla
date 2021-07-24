@@ -124,6 +124,7 @@ li {
   .list-options {
     display: flex;
     align-items: center;
+  
     
     img {
       cursor: pointer;
@@ -142,7 +143,7 @@ li[isDone=true] {
   text-decoration: line-through;
   text-decoration-thickness: 0.3rem;
   text-decoration-color: #000000;
-  
+
 }
 
 /*MEDIA QUERIES*/

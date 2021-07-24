@@ -89,6 +89,7 @@ document.querySelector('input').value = ''
 function deleteTask(element) {
   console.log(element)
   const target = document.querySelector(`li[id-data="${element.getAttribute('id-data')}"]`)
+ 
 
   tasks = tasks.filter(task => task.id != element.getAttribute('id-data'))
 
@@ -106,7 +107,7 @@ function deleteTask(element) {
 function taskDoneAndUndone(element) {
   const target = document.querySelector(`li[id-data="${element.getAttribute('id-data')}"]`)
   console.log(target)
-  let imgCheck = document.querySelector('.checkmark')
+  const targetImg = document.querySelector(`img[id-data="${element.getAttribute('id-data')}"]`)
 
   const actualTask = tasks.find(task => task.id ==   element.getAttribute('id-data'))
   const actualIndex = tasks.findIndex(task => task.id == element.getAttribute('id-data'))
@@ -115,13 +116,13 @@ function taskDoneAndUndone(element) {
     tasks[actualIndex] = actualTask
     Storage.saveData()
     target.setAttribute('isdone', 'true')
-    imgCheck.src = 'assets/img/check.svg'
+    targetImg.setAttribute('src', 'assets/img/check.svg')
   }else {
     actualTask.data.isDone = false
     tasks[actualIndex] = actualTask
     Storage.saveData()
     target.setAttribute('isdone', 'false')
-    imgCheck.src = 'assets/img/undone.svg'
+    targetImg.setAttribute('src', 'assets/img/undone.svg')
   }
 }
 
